@@ -1,4 +1,14 @@
 import tkinter as tk
+from tkinter import messagebox
+
+class My_calculaotor:
+    def __init__(self, root):
+        self.root = root
+        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
+
+    def on_closing(self):
+        if messagebox.askyesno(title="Quit?", message="Do you really want to Quit"):
+            self.root.destroy()
 
 calculation = ""
 
@@ -30,13 +40,16 @@ def clear_feild():
 
 root = tk.Tk()
 root.title("Calculator")
-# root.geometry('500x400')
+# root.geometry('400x500')
+
+My_calculaotor = My_calculaotor(root)
 
 text_result = tk.Text(root, height=2, width=16, font=('Arial', 20))
 text_result.grid(columnspan=5)
 
 button_bg = "lightblue"
 button_fg = "black"
+operator_bg = "lightgreen"  #Operator color
 #button color bg and fg
 btn_1 = tk.Button(root, text="1", command=lambda: add_to_calculation(1), width=5, font=('Arial', 14), bg=button_bg, fg=button_fg)
 btn_1.grid(row=2, column=1)
@@ -59,8 +72,6 @@ btn_9.grid(row=4, column=3)
 btn_0 = tk.Button(root, text="0", command=lambda: add_to_calculation(0), width=5, font=('Arial', 14), bg=button_bg, fg=button_fg)
 btn_0.grid(row=5, column=2)
 
-operator_bg = "lightgreen"  #Operator color 
-
 btn_plus = tk.Button(root, text="+", command=lambda: add_to_calculation("+"), width=5, font=('Arial', 14), bg=operator_bg, fg=button_fg)
 btn_plus.grid(row=2, column=4)
 btn_subtract = tk.Button(root, text="-", command=lambda: add_to_calculation("-"), width=5, font=('Arial', 14), bg=operator_bg, fg=button_fg)
@@ -79,5 +90,6 @@ btn_equal = tk.Button(root, text="=", command=evaluate_calculation, width=11, fo
 btn_equal.grid(row=6, column=3, columnspan=2)
 btn_clear = tk.Button(root, text="C", command=clear_feild, width=11, font=('Arial', 14), bg="red", fg="white")
 btn_clear.grid(row=6, column=1, columnspan=2)
+
 
 root.mainloop()
