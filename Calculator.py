@@ -40,7 +40,7 @@ def clear_feild():
 
 root = tk.Tk()
 root.title("Calculator")
-# root.geometry('400x500')
+#root.geometry('400x500')
 
 My_calculaotor = My_calculaotor(root)
 
